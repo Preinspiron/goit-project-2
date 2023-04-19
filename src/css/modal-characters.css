@@ -1,6 +1,7 @@
 /* --------- Mobile --------- */
 .backdrop-modal-characters {
   position: fixed;
+  z-index: 500;
   inset: 0;
 
   display: flex;

@@ -71,11 +71,11 @@ async function openModal(event) {
     console.log(dataRenderModalCharacters);
     const dataRenderModalComics = resultsComics.map(item => {
       // const cutIndex = item.title.indexOf('(');
-      const title = item.title.slice(0, 21);
+      const title = item.title.slice(0, 18).concat(' ...');
       return {
         title: title,
         creators: item.creators.items[0].name,
-        images: item.images.length !== 0 ? item.images : [{extension: "jpg", path: "http://i.annihil.us/u/prod/marvel/i/mg/b/d0/4badb223f33c9"}]
+        images: item.images.length !== 0 ? item.images.slice(0, 1) : [{extension: "jpg", path: "http://i.annihil.us/u/prod/marvel/i/mg/b/d0/4badb223f33c9"}]
       }
     });
 
@@ -93,14 +93,13 @@ async function openModal(event) {
 
     console.log(dataRenderAll);
 
-    // elements.modalAboutCharacters.insertAdjacentHTML('beforeend', RenderModal(dataRenderAll));
     elements.modalAboutCharacters.insertAdjacentHTML('beforeend', RenderModal(dataRenderAll));
 
     elements.modal.classList.toggle('is-hidden');
 
     setTimeout(() => {
       listenerModal();
-    }, 2000);
+    }, 1000);
     
   } catch (error) {
     console.log(error);
@@ -150,62 +149,3 @@ function onClickReplaceImg(event) {
 function renderImgGallery(path) {
   elements.imgMaxConteiner.innerHTML = `<img src="${path}" alt="" width="295" height="387">`;
 }
-
-//----------------------------------------------------------------
-
-// function renderModalCharactersMax(obj) {
-//   return `<img class="js-img-max" src="${obj.path}/portrait_uncanny.${obj.extension}" alt="${obj.name}" width="295" height="387">`
-// }
-
-// function renderModalCharactersMin(obj) {
-//       return `
-//         <li class="img-item">
-//           <img class="js-img-min" src="${obj.path}/standard_medium.${obj.extension}" alt="${obj.name}" width="80" height="80">
-//         </li>`
-// }
-
-// function renderModalComicsList(obj) {
-//   if (window.innerWidth < 768) {
-//         return `
-//     <li class="modal-comics-item">
-//                 <img class="comics-img-container" src="${obj.path}/standard_fantastic.${obj.extension}" alt="${obj.title}" width="263px" height="263px">
-//                 <div class="comics-desc-container">
-//                   <h3 class="comics-name">${obj.title}</h3>
-//                   <p class="actress">${obj.creators}</p>
-//                 </div>
-//               </li>`
-//   }
-
-//   if (window.innerWidth >= 768 && window.innerWidth < 1440) {
-//         return `
-//     <li class="modal-comics-item">
-//                 <img class="comics-img-container" src="${obj.path}/portrait_xlarge.${obj.extension}" alt="${obj.title}" width="263px" height="263px">
-//                 <div class="comics-desc-container">
-//                   <h3 class="comics-name">${obj.title}</h3>
-//                   <p class="actress">${obj.creators}</p>
-//                 </div>
-//               </li>`
-//   }
-
-//   if (window.innerWidth >= 1440) {
-//         return `
-//     <li class="modal-comics-item">
-//                 <img class="comics-img-container" src="${obj.path}/portrait_xlarge.${obj.extension}" alt="${obj.title}" width="263px" height="263px">
-//                 <div class="comics-desc-container">
-//                   <h3 class="comics-name">${obj.title}</h3>
-//                   <p class="actress">${obj.creators}</p>
-//                 </div>
-//               </li>`
-//   }
-// }
-
-// function renderModalAboutCharacters(obj) {
-//       return `
-//     <h2 class="modal-char-title">${obj.name}</h2>
-//             <p class="date-comics-modal">
-//             ${obj.month} ${obj.day}, ${obj.year}
-//             </p>
-//             <p class="about-char-description">
-//               ${obj.description}
-//             </p>`
-// }

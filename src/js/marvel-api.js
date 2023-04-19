@@ -45,9 +45,9 @@ export class MarvelApi {
         ...(modifiedSince && {modifiedSince}),
       },
     };
-
+    // return axios.get(`${ MarvelApi.URL_CHARACTERS }`, options);
     try {
-      const res = axios.get(`${ MarvelApi.URL_CHARACTERS }`, options);
+      const res =  axios.get(`${ MarvelApi.URL_CHARACTERS }`, options);
       const data = res.data.data.results
       return data;
     } catch (error) {
@@ -82,7 +82,7 @@ export class MarvelApi {
     return axios.get(`${ MarvelApi.URL_CHARACTERS }/${ id }`, options);
   }
 
-  getCharactersName() {
+  async getCharactersLoadPage() {
     const options = {
       baseURL: MarvelApi.URL_BASIS,
       params: {
@@ -90,10 +90,16 @@ export class MarvelApi {
         hash: this.hash,
         ts: MarvelApi.TS,
         limit: this.limit,
-        nameStartsWith: this.nameStartsWith,
       },
     };
-    return axios.get(`${ MarvelApi.URL_CHARACTERS }`, options);
+    try {
+      const res = await axios.get(`${ MarvelApi.URL_CHARACTERS }`, options);
+      console.log(res);
+      return res;
+    } catch (error) {
+      console.log(error);
+    }
+    
   }
 
   getComics() {
