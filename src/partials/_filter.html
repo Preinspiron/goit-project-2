@@ -112,7 +112,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>
-  const fp = flatpickr('#calendar', {});
+  const fp = flatpickr('#calendar', { dateFormat: 'd/m/Y' });
   // console.dir(fp);
   fp.calendarContainer.style.backgroundColor = '#171717';
   const selectEl = document.querySelector('.pseudoselect');
