@@ -28,7 +28,14 @@ renderStartPage();
 
 async function renderStartPage() {
   const {data: {data: {results}}} = await marvelApi.getCharactersLoadPage();
-  
+  const data = results.map(({thumbnail: { path, extension }}) => {
+    return {
+      path,
+      extension,
+    }
+  })
+  console.log(data);
+  elements.gallery.insertAdjacentHTML('beforeend', data);
 }
 
 

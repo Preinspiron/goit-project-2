@@ -1,9 +1,9 @@
-{{#each this}}
+
 <li class='characters-page-item'>
   <div class='image-thumb'>
     <img
       class='characters-page-img'
-      src='{{this.thumbnail.path}}/detail.{{this.extension}}'
+      src='{{this.path}}.{{this.extension}}'
       alt='{{this.name}}'
       id='{{this.id}}'
     />
@@ -12,4 +12,3 @@
     <p class='characters-page-name'>{{this.name}}</p>
   </div>
 </li>
-{{/each}}
