@@ -155,7 +155,7 @@
 /* ============================tablet=============================== */
 @media screen and (min-width: 768px) {
   .container {
-    max-width: 704px;
+    /* max-width: 704px; */
   }
 
   .random-characters-container {

@@ -67,28 +67,33 @@ body {
 
 /*! Этими правилимами прошу всех пользоваться */
 
-/*
+
 @media screen and (min-width: 375px) {
   .container {
     width: 365px;
+    /* !!! */
     margin-left: auto;
     margin-right: auto;
+    margin: 0 auto;
   }
 }
 
 @media screen and (min-width: 768px) {
   .container {
-    width: 704px;
+    max-width: 704px;
+    margin: 0 auto;
   }
 }
 
 @media screen and (min-width: 1440px) {
   .container {
-    width: 1406px;
-  }
-} */
-@media screen and (min-width: 1440px) {
-  .container {
-    width: 1440px;
+    max-width: 1406px;
+    margin: 0 auto;
   }
 }
+
+/* @media screen and (min-width: 1440px) {
+  .container {
+    max-width: 1440px;
+  }
+} */

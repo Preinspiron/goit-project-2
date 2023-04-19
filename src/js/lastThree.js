@@ -109,8 +109,9 @@ async function innerModalLinkToCharacter({ digitalId }) {
       data: { results },
     },
   } = pullCharactersById;
+  console.log(pullCharactersById);
   const characters = results.map(
-    ({ thumbnail: { image, extension }, name }) => ({ image, extension, name })
+    ({ thumbnail: { path, extension }, name }) => ({ path, extension, name })
   );
   console.log(characters);
   refs['.modal-comics-characters .items'].insertAdjacentHTML(

@@ -14,6 +14,8 @@
 @media screen and (min-width: 768px) {
   .container-hero-characters {
     width: 734px;
+    padding-right: 0;
+
   }
 }
 
@@ -21,11 +23,19 @@
   .container-hero-characters {
     width: 1406px;
   }
+
+  .container {
+    padding-right: 0;
+    ;
+  }
+
 }
 
 .hero-characters {
   padding-bottom: 40px;
-  margin-top: -60px;
+  margin-top: -80px;
+  margin-right: -32px;
+  max-width: 1440px;
 }
 
 .hero-characters-subtitle {
