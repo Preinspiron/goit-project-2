@@ -3,6 +3,7 @@
         background-image: url(/src/images/desktop/Characters/spiderman-jump.mobile.png); 
         background-size: cover;
         background-position: center;
+        margin-top: -50px;
 }
     .container-comics-spiderman {
         position: relative;
@@ -62,6 +63,7 @@
         background-color: var(--praimery-bg-color);
         background-size: cover;
         padding-top: 0;
+        margin-top: -64px;
     }
 
     .container-comics-spiderman {

@@ -5,6 +5,7 @@
         background-image: url(../images/mobile/batman.mobile.png); 
         background-repeat: no-repeat;
         background-position: right bottom;
+        margin-top: -50px;
     }
     .container-comics {
         position: relative;
@@ -58,11 +59,18 @@
 
 }
 @media screen and (min-width:768px) {
+    .back{
+        padding-bottom: 25px;
+    }
+    }
+@media screen and (min-width:768px) {
     .section-comics {
         background-image: url(../images/tablet/batman.tablet.png);
         background-color: var(--praimery-bg-color);
         height: 780px;
         padding-top: 0;
+        margin-top: -100px;
+        
     }
 
     .container-comics {
@@ -103,6 +111,7 @@
     .section-comics {
         background-image: url(../images/desktop/Comics/batman.png);
         background-repeat: no-repeat;
+        margin-top:0;
     }
 
     .container-comics {
@@ -116,7 +125,7 @@
 
     .back {
         bottom: 75px;
-        right: -60px;
+        /* right: -60px; */
     }
 }
 

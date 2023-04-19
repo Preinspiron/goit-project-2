@@ -24,16 +24,16 @@
 
 /* ========================mobile============================ */
 
-@media screen and (min-width: 375px) {
+@media screen and (min-width: 378px) {
   .container {
-    max-width: 365px;
+    max-width: 378px;
     margin-left: auto;
     margin-right: auto;
   }
 }
 
 .section {
-  padding-top: 80px;
+  /* padding-top: 80px; */
   padding-bottom: 40px;
   margin-left: auto;
   margin-right: auto;
@@ -154,9 +154,10 @@
 
 /* ============================tablet=============================== */
 @media screen and (min-width: 768px) {
-  .container {
-    /* max-width: 704px; */
-  }
+ .container {
+    max-width: 1200px;
+     /* padding-bottom: 146px;  */
+   } 
 
   .random-characters-container {
     width: 100%;
@@ -167,10 +168,13 @@
   }
 
   .section {
-    padding-top: 128px;
     padding-bottom: 88px;
   }
-
+  /* @media screen and (min-width: 768px) {
+    .section{
+         padding-top: 128px; 
+    }
+  } */
   .character-title {
     font-size: 44px;
     line-height: 1;
@@ -199,22 +203,21 @@
     margin-right: 0px;
   }
 }
-
+.random-characters-container {
+  max-width: 1440px;
+}
 /* ============================desktop================================ */
 @media screen and (min-width: 1440px) {
   .container {
     max-width: 100%;
     /* width: 100%; */
 
-  }
+   } 
 
-  .random-characters-container {
-    max-width: 1440px;
-  }
-
-  /* .random-characters-box {
+ 
+ .random-characters-box {
     margin: 0;
-  } */
+  } 
 
   .characters-container-info {
     display: flex;
