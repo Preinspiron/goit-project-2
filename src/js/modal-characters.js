@@ -89,7 +89,7 @@ async function openModal(event) {
       }
     ]
 
-    const dataRenderAll = Object.assign( {} , ...dataRenderModalCharacters, comics = dataRenderModalComics, ...dateTime);
+    const dataRenderAll = Object.assign( {} , ...dataRenderModalCharacters, dataRenderModalComics, ...dateTime);
 
     console.log(dataRenderAll);
 

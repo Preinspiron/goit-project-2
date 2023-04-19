@@ -3,7 +3,7 @@ import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
 import Notiflix from 'notiflix';
 import { MarvelApi } from "./marvel-api";
-import '../hbs/_renderStartCharactersPage.hbs';
+import renderGallery from '../hbs/_renderStartCharactersPage.hbs';
 
 
 const elements = {
@@ -28,16 +28,16 @@ renderStartPage();
 
 async function renderStartPage() {
   const {data: {data: {results}}} = await marvelApi.getCharactersLoadPage();
-  const data = results.map(({thumbnail: { path, extension }}) => {
+  const data = results.map(({name, thumbnail: { path, extension }}) => {
     return {
       path,
       extension,
+      name,
     }
   })
   console.log(data);
-  elements.gallery.insertAdjacentHTML('beforeend', data);
+  elements.gallery.insertAdjacentHTML('beforeend', renderGallery(data));
 }
-
 
 // elements.form.addEventListener('submit', onSerchImages);
 
