@@ -19,7 +19,6 @@ const elements = {
   imgMaxConteiner: document.querySelector('.js-img-max-conteiner'),
   imgMax: document.querySelector('.js-img-max'),
   imgMinList: document.querySelector('.js-img-list'),
-  
 };
 
 elements.openModalBtn.addEventListener('click', openModal);
@@ -75,8 +74,16 @@ async function openModal(event) {
       return {
         title: title,
         creators: item.creators.items[0].name,
-        images: item.images.length !== 0 ? item.images.slice(0, 1) : [{extension: "jpg", path: "http://i.annihil.us/u/prod/marvel/i/mg/b/d0/4badb223f33c9"}]
-      }
+        images:
+          item.images.length !== 0
+            ? item.images.slice(0, 1)
+            : [
+                {
+                  extension: 'jpg',
+                  path: 'http://i.annihil.us/u/prod/marvel/i/mg/b/d0/4badb223f33c9',
+                },
+              ],
+      };
     });
 
     console.log(dataRenderModalComics);
@@ -86,21 +93,23 @@ async function openModal(event) {
         year: date.getFullYear(),
         month: getMonth(date.getMonth()),
         day: date.getDate(),
-      }
-    ]
+      },
+    ];
 
     const dataRenderAll = Object.assign( {} , ...dataRenderModalCharacters, dataRenderModalComics, ...dateTime);
 
     console.log(dataRenderAll);
 
-    elements.modalAboutCharacters.insertAdjacentHTML('beforeend', RenderModal(dataRenderAll));
+    elements.modalAboutCharacters.insertAdjacentHTML(
+      'beforeend',
+      RenderModal(dataRenderAll)
+    );
 
     elements.modal.classList.toggle('is-hidden');
 
     setTimeout(() => {
       listenerModal();
     }, 1000);
-    
   } catch (error) {
     console.log(error);
   }

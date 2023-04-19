@@ -272,7 +272,7 @@ margin-right: 32px; */
 
 /* =======================slider================ */
 .my-slides {
-  display: none;
+  /* display: none; */
 }
 
 .characters-small-title,
