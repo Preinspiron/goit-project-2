@@ -20,13 +20,9 @@
   "dependencies": {
     "lodash.debounce": "^4.0.8",
     "modern-normalize": "^1.1.0",
-    "slick-carousel": "^1.8.1"
-  },
-  "dependencies": {
-    "lodash.debounce": "^4.0.8",
-    "modern-normalize": "^1.1.0",
     "notiflix": "^3.2.6",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "tui-pagination": "^3.4.1"
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.6.0",
