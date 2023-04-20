@@ -10,6 +10,12 @@ export default {
   '.modal-comics-characters .items': null,
 
   ///!===> Modal
+
+  //!<<<<<YEARS COMICS
+  '.characters-options-list year-list': document.querySelector(
+    '.characters-options-list year-list'
+  ),
+  //!>>>>>YEARS COMICS
   indexComicsModalOpenRenderHbs: document.querySelector('.modal-comics'),
   indexRandomUlRef: document.querySelector('#characters-list-index-renndom'),
   refresh() {
