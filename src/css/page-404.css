@@ -211,7 +211,9 @@ body {
   }
 }
 
+
 @media screen and (max-height: 900px) and (orientation: landscape) {
+
   .error {
     overflow: auto;
   }
