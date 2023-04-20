@@ -31,11 +31,11 @@ refs.indexLastComics.addEventListener('click', onClickLastComics, {
 });
 
 function onClickLastComics(e) {
-  refs.refresh();
-  console.log(refs);
-  refs['[data-comics-modal]'].classList.remove('is-hidden');
+  refs.indexComicsModal.classList.remove('is-hidden');
   document.body.style.overflowY = 'hidden';
+  refs.refresh();
 
+  console.log('hiden');
   if (e.target.nodeName === 'IMG')
     Marvel.getComicById(e.target.dataset.id)
       .then(
@@ -78,8 +78,7 @@ function onClickLastComics(e) {
         })
       )
       .then(res => {
-        refs['[data-comics-modal]'].innerHTML = HBSmodal(res);
-        refs['[data-comics-modal]'] = null;
+        refs.indexComicsModal.innerHTML = HBSmodal(res);
         return res;
       })
       .then(res => {
@@ -92,14 +91,11 @@ function onClickLastComics(e) {
 }
 
 const onComicsModalClose = e => {
-  console.log(1);
-  refs['.modal-comics-characters .items'].innerHTML = '';
-  refs['#modalCloseBtn'] = null;
-  refs['.modal-comics-characters .items'] = null;
-  refs.refresh();
-  refs['[data-comics-modal]'].classList.add('is-hidden');
-  efs['[data-comics-modal]'] = null;
+  refs.indexComicsModal.classList.add('is-hidden');
   document.body.style.overflowY = 'auto';
+  refs.indexComicsModal.innerHTML = '';
+  console.log('click');
+  refs['#modalCloseBtn'] = null;
 };
 
 async function innerModalLinkToCharacter({ digitalId }) {
@@ -109,16 +105,16 @@ async function innerModalLinkToCharacter({ digitalId }) {
       data: { results },
     },
   } = pullCharactersById;
-
+  console.log(pullCharactersById);
   const characters = results.map(
     ({ thumbnail: { path, extension }, name }) => ({ path, extension, name })
   );
   console.log(characters);
-  refs['.modal-comics-characters .items'] = null;
   refs.refresh();
-
-  refs['.modal-comics-characters .items'].innerHTML = HBSCharacters(characters);
-  // refs['.modal-comics-characters .items'] = null;
+  refs['.modal-comics-characters .items'].insertAdjacentHTML(
+    'afterbegin',
+    HBSCharacters(characters)
+  );
   console.log(refs['.modal-comics-characters .items']);
 
   // console.log(pullCharactersById);
