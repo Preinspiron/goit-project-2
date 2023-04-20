@@ -110,6 +110,7 @@ async function innerModalLinkToCharacter({ digitalId }) {
     ({ thumbnail: { path, extension }, name }) => ({ path, extension, name })
   );
   console.log(characters);
+  refs.refresh();
   refs['.modal-comics-characters .items'].insertAdjacentHTML(
     'afterbegin',
     HBSCharacters(characters)
