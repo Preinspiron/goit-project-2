@@ -71,11 +71,11 @@
 .characters-page-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 64px 16px;
+  gap:  32px;
   margin-left: auto;
   margin-right: auto;
   justify-content: center;
-  padding-bottom: 16.667vw;
+  /* padding-bottom: 16.667vw; */
 
 }
 

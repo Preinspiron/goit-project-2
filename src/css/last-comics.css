@@ -50,7 +50,7 @@
 
 .lastComics-item {
   width: 31.111vw;
-  height: 40.625vw;
+  /* max-height: 40.625vw; */
   cursor: pointer;
 } @media screen and (max-width: 768px) {
   .lastComics-item {
@@ -58,28 +58,28 @@
       flex-shrink: 0;
       flex-basis: auto;
       width: 58.333vw;
-      height: 76.172vw;
+      /* max-height: 76.172vw; */
   }
 } @media screen and (max-width: 480px) {
   .lastComics-item {
     width: 87.297vw;
-    height: 117.297vw;
+    max-height: 117.297vw;
   }
 }
 
 
 .lastComics-img {
-  width: 31.111vw;
-  height:36.042vw;
-} @media screen and (max-width: 768px) {
+  width: 323px;
+  max-height:374px;
+} @media screen and (min-width: 768px) {
   .lastComics-img {
-    width: 58.333vw;
-    height: 67.578vw;
+    width: 448px;
+    max-height: 585px;
   }
-} @media screen and (max-width: 480px) {
+} @media screen and (min-width:1440px) {
   .lastComics-img {
-    width: 87.297vw;
-    height: 101.081vw;
+    width: 336px;
+    max-height: 511px;
   }
 }
 

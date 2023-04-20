@@ -7,7 +7,7 @@
         background-position: right bottom;
         margin-top: -50px;
     }
-    .container-comics {
+    .container-comics__betmen {
         position: relative;
         width: 335px;
         padding-top: 172px;
@@ -67,13 +67,14 @@
     .section-comics {
         background-image: url(../images/tablet/batman.tablet.png);
         background-color: var(--praimery-bg-color);
-        height: 780px;
+        min-height: 780px;
         padding-top: 0;
         margin-top: -100px;
+        margin-bottom: 24px;
         
     }
 
-    .container-comics {
+    .container-comics__betmen {
         width: 768px;
         padding-left: 20px;
         padding-top: 212px;
@@ -114,7 +115,7 @@
         margin-top:0;
     }
 
-    .container-comics {
+    .container-comics__betmen {
         min-width: 1440px;
         padding-left: 32px;
     }

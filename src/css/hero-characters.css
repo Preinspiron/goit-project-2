@@ -32,16 +32,19 @@
 
   .container {
     padding-right: 0;
+    max-width: 1440px;
     ;
   }
-
+  
 }
-
+.hero-characters-content{
+margin-bottom: 45px;
+}
 .hero-characters {
   /* padding-bottom: 40px; */
   margin-top: -80px;
   /* margin-right: -32px; */
-  max-width: 1440px;
+  /* max-width: 1440px; */
 }
 
 .hero-characters-subtitle {
@@ -343,5 +346,6 @@
     margin-top: 210px;
     margin-right: auto;
     width: 332px;
+
   }
 }

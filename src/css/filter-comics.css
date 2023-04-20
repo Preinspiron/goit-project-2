@@ -109,6 +109,9 @@ body {
   color: #fafafa;
   box-sizing: border-box;
 }
+ .filters-section{
+  margin-top: 20px;
+} 
 
 .filters-select:focus {
   background-color: #34387f;

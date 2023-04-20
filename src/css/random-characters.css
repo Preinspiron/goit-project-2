@@ -155,7 +155,7 @@
 /* ============================tablet=============================== */
 @media screen and (min-width: 768px) {
  .container {
-    max-width: 1200px;
+  max-width: 768px;
      /* padding-bottom: 146px;  */
    } 
 
@@ -169,11 +169,17 @@
 
   .section {
     padding-bottom: 88px;
+    max-width: 375px;
   }
-  /* @media screen and (min-width: 768px) {
+  @media screen and (min-width: 768px) {
     .section{
          padding-top: 128px; 
+         max-width: 1440px;
     }
+  }
+  /* @media screen and (min-width: 1440px){
+    .section{
+    max-width: 768px;}
   } */
   .character-title {
     font-size: 44px;
@@ -203,9 +209,9 @@
     margin-right: 0px;
   }
 }
-.random-characters-container {
+/* .random-characters-container {
   max-width: 1440px;
-}
+} */
 /* ============================desktop================================ */
 @media screen and (min-width: 1440px) {
   .container {
