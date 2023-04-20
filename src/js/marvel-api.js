@@ -1,10 +1,13 @@
 import axios from 'axios';
 import { getHash } from './md5-hash';
+import { Loading } from 'notiflix/build/notiflix-loading-aio';
+import '../css/notiflix-3.2.6.min.css';
+let flag = true;
 
 export class MarvelApi {
   //  static HASH_KEY = '752374e9c2edb150871c0c2b35839a8b';
-  static PUBLIC_KEY = 'f31807a60270db8c1d9152910dc43c3a';
-  static PRIVATE_KEY = 'e096f5c83a35e96c2f1b391e0633321a9c1b55af';
+  static PUBLIC_KEY = '7d9ed9bfb71cc9447a4fb89b3662f78c';
+  static PRIVATE_KEY = 'c8d62222945a3adbe843242478edb88acf6d4666';
   static URL_BASIS = 'https://gateway.marvel.com/v1/public';
   static TS = 1;
   static URL_CHARACTERS = '/characters';
@@ -16,44 +19,43 @@ export class MarvelApi {
       MarvelApi.PRIVATE_KEY,
       MarvelApi.PUBLIC_KEY
     );
-    this.limit = 20;
+    this.limit = 50;
     this.offset = 0;
-
-    this.nameStartsWith = null;
-    this.comics = null;
-    this.orderBy = null;
-    this.modifiedSince = null;
-
-    this.id = null;
-
-    
   }
 
-  async getCharacters({nameStartsWith = '', offset = 0, limit = 16, comics = '', orderBy = '', modifiedSince =''}) {
-
+  async getCharacters({
+    nameStartsWith = '',
+    offset = 0,
+    limit = this.limit,
+    comics = '',
+    orderBy = '',
+    modifiedSince = '',
+  }) {
     const options = {
       baseURL: MarvelApi.URL_BASIS,
       params: {
         apikey: MarvelApi.PUBLIC_KEY,
         hash: this.hash,
         ts: MarvelApi.TS,
-        ...(nameStartsWith && {nameStartsWith}),
-        ...(offset && {offset}),
-        ...(limit && {limit}),
-        ...(comics && {comics}),
-        ...(orderBy && {orderBy}),
-        ...(modifiedSince && {modifiedSince}),
+        ...(nameStartsWith && { nameStartsWith }),
+        ...(offset && { offset }),
+        ...(limit && { limit }),
+        ...(comics && { comics }),
+        ...(orderBy && { orderBy }),
+        ...(modifiedSince && { modifiedSince }),
+      },
+      onDownloadProgress: function (progressEvent) {
+        if (flag) {
+          Loading.dots({
+            svgColor: 'rgba(255,0,0)',
+            backgroundColor: '#171717ba',
+          });
+        }
+        flag = false;
+        Loading.remove(1000);
       },
     };
-    // return axios.get(`${ MarvelApi.URL_CHARACTERS }`, options);
-    try {
-      const res =  axios.get(`${ MarvelApi.URL_CHARACTERS }`, options);
-      const data = res.data.data.results
-      return data;
-    } catch (error) {
-      console.log(error);
-    }
-
+    return axios.get(`${MarvelApi.URL_CHARACTERS}`, options);
   }
 
   getCharactersByIdComics(id) {
@@ -66,8 +68,21 @@ export class MarvelApi {
         limit: 3,
         // format: 'digital comic',
       },
+      onDownloadProgress: function (progressEvent) {
+        if (flag) {
+          Loading.dots({
+            svgColor: 'rgba(255,0,0)',
+            backgroundColor: '#171717ba',
+          });
+        }
+        flag = false;
+        Loading.remove(1000);
+      },
     };
-    return axios.get(`${ MarvelApi.URL_CHARACTERS }/${ id }/${MarvelApi.URL_COMICS}`, options);
+    return axios.get(
+      `${MarvelApi.URL_CHARACTERS}/${id}/${MarvelApi.URL_COMICS}`,
+      options
+    );
   }
 
   getCharactersById(id) {
@@ -78,11 +93,21 @@ export class MarvelApi {
         hash: this.hash,
         ts: MarvelApi.TS,
       },
+      onDownloadProgress: function (progressEvent) {
+        if (flag) {
+          Loading.dots({
+            svgColor: 'rgba(255,0,0)',
+            backgroundColor: '#171717ba',
+          });
+        }
+        flag = false;
+        Loading.remove(1000);
+      },
     };
-    return axios.get(`${ MarvelApi.URL_CHARACTERS }/${ id }`, options);
+    return axios.get(`${MarvelApi.URL_CHARACTERS}/${id}`, options);
   }
 
-  async getCharactersLoadPage() {
+  getCharactersLoadPage() {
     const options = {
       baseURL: MarvelApi.URL_BASIS,
       params: {
@@ -91,15 +116,18 @@ export class MarvelApi {
         ts: MarvelApi.TS,
         limit: this.limit,
       },
+      onDownloadProgress: function (progressEvent) {
+        if (flag) {
+          Loading.dots({
+            svgColor: 'rgba(255,0,0)',
+            backgroundColor: '#171717ba',
+          });
+        }
+        flag = false;
+        Loading.remove(1000);
+      },
     };
-    try {
-      const res = await axios.get(`${ MarvelApi.URL_CHARACTERS }`, options);
-      console.log(res);
-      return res;
-    } catch (error) {
-      console.log(error);
-    }
-    
+      return axios.get(`${MarvelApi.URL_CHARACTERS}`, options);
   }
 
   getComics() {
@@ -111,14 +139,20 @@ export class MarvelApi {
         ts: MarvelApi.TS,
         limit: this.limit,
       },
+      onDownloadProgress: function (progressEvent) {
+        if (flag) {
+          Loading.dots({
+            svgColor: 'rgba(255,0,0)',
+            backgroundColor: '#171717ba',
+          });
+        }
+        flag = false;
+        Loading.remove(1000);
+      },
     };
-    return axios.get(`${ MarvelApi.URL_COMICS }`, options);
+    return axios.get(`${MarvelApi.URL_COMICS}`, options);
   }
 }
-
-
-
-
 
 // ------------------------------- AXIOS ---------------------------------
 

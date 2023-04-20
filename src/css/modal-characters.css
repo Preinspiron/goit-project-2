@@ -129,6 +129,10 @@
 
 .container-modal-list-comics {}
 
+.modal-comics-list {
+  height: 932px;
+}
+
 .modal-comics-list-title {
   margin-bottom: 16px;
 
@@ -217,6 +221,7 @@
   }
 
   .modal-comics-list {
+    height: auto;
     gap: 19px;
   }
 

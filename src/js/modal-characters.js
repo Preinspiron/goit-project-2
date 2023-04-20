@@ -23,12 +23,12 @@ const elements = {
 
 elements.openModalBtn.addEventListener('click', openModal);
 
-setTimeout(() => {
-  const openRandomModal = document.querySelectorAll('[data-characters-random]');
-  openRandomModal.forEach(item => {
-    item.addEventListener('click', openModal);
-  });
-}, 1000);
+// setTimeout(() => {
+//   const openRandomModal = document.querySelectorAll('[data-characters-random]');
+//   openRandomModal.forEach(item => {
+//     item.addEventListener('click', openModal);
+//   });
+// }, 1000);
 
 async function openModal(event) {
   console.log(event.target);
@@ -80,7 +80,7 @@ async function openModal(event) {
             : [
                 {
                   extension: 'jpg',
-                  path: 'http://i.annihil.us/u/prod/marvel/i/mg/b/d0/4badb223f33c9',
+                  path: 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available',
                 },
               ],
       };
@@ -109,7 +109,8 @@ async function openModal(event) {
 
     setTimeout(() => {
       listenerModal();
-    }, 1000);
+    }, 0);
+    
   } catch (error) {
     console.log(error);
   }

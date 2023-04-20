@@ -1,96 +1,173 @@
-import flatpickr from "flatpickr";
+import flatpickr from 'flatpickr';
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
 import Notiflix from 'notiflix';
-import { MarvelApi } from "./marvel-api";
+import { MarvelApi } from './marvel-api';
 import renderGallery from '../hbs/_renderStartCharactersPage.hbs';
-
+import debounce from 'lodash.debounce';
 
 const elements = {
-  form: document.querySelector('.js-serch-form'),
-
   gallery: document.querySelector('.js-gallery'),
+  inputNameStart: document.querySelector('.js-filters-input'),
+  filtersSelect: document.querySelector('.js-filters-select'),
+  optionsList: document.querySelector('.js-characters-options-list'),
   tuiPagination: document.querySelector('.js-tui-pagination'),
-}
+};
 
-// const optionsPagination = { 
-//   totalItems: 0,
-//   itemsPerPage: 20,
-//   visiblePages: 10,
-//   page: 1,
-// };
+let totalPages = null;
+let offset = null;
+let nameStartsWith = null;
+let totalItemsPage = 0;
+let orderBy = null;
 
-// const pagination = new Pagination(elements.tuiPagination, optionsPagination);
-// pagination.on('beforeMove', loadMore);
+if(window.innerWidth === 375) {
+    totalItemsPage = 5;
+  }
+  
+  if(window.innerWidth === 768) {
+    totalItemsPage = 8;
+  }
+  
+  if(window.innerWidth === 1440) {
+    totalItemsPage = 16;
+  }
+
+const optionsPagination = {
+  totalItems: 0,
+  itemsPerPage: totalItemsPage,
+  visiblePages: 10,
+  page: 10,
+};
+
+const pagination = new Pagination(elements.tuiPagination, optionsPagination);
+pagination.on('beforeMove', loadMore);
+
 
 const marvelApi = new MarvelApi();
 renderStartPage();
 
 async function renderStartPage() {
-  const {data: {data: {results}}} = await marvelApi.getCharactersLoadPage();
-  const data = results.map(({name, thumbnail: { path, extension }}) => {
+  const {
+    data: {
+      data: { results },
+    },
+  } = await marvelApi.getCharactersLoadPage();
+
+  const data = results.map(({ id, name, thumbnail: { path, extension } }) => {
     return {
       path,
       extension,
       name,
-    }
-  })
-  console.log(data);
-  elements.gallery.insertAdjacentHTML('beforeend', renderGallery(data));
+      id,
+    };
+  });
+  const filterImgNotAvailable = data
+    .filter(item => !item.path.endsWith('image_not_available'))
+    .slice(0, totalItemsPage);
+  
+  elements.gallery.insertAdjacentHTML(
+    'beforeend',
+    renderGallery(filterImgNotAvailable)
+  );
 }
 
-// elements.form.addEventListener('submit', onSerchImages);
+elements.inputNameStart.addEventListener(
+  'input',
+  debounce(onSerchCharacters, 2000)
+);
 
-// async function onSerchImages(event) {
-//   event.preventDefault();
+// elements.filtersSelect.addEventListener('click', onListenerSelect);
 
-//   elements.tuiPagination.classList.add('is-hidden');
-//   elements.gallery.innerHTML = '';
-  
-
-//   const { elements: { searchQuery } } = event.currentTarget;
-//   pixabayApi.searchQuery = searchQuery.value;
-
-//   try {
-//     const { data: { hits: photoCards, totalHits } } = await pixabayApi.getPhotoCards();
-
-//     totalPages = Math.floor(totalHits / pixabayApi.per_page);
-
-//     if (totalHits === 0 || photoCards.length === 0) {
-//       Notify.failure('Sorry, there are no images matching your search query. Please try again.');
-//       pagination.reset(0);
-//       return;
-//     }
-
-//     elements.gallery.insertAdjacentHTML('beforeend', renderPhotoCards(photoCards));
-//     Notify.success(`Hooray! We found ${totalHits} images.`);
-
-//     lightbox.refresh();
-
-//     if (totalPages > 1) {
-//       elements.tuiPagination.classList.remove('is-hidden');
-      
-//       pagination.reset(totalHits);
-      
-//     }
-  
-//   } catch (error) {
-//     console.log(error);
-//   }
-
+// function onListenerSelect () {
+//   elements.optionsList.addEventListener('click', onSelect);
 // }
 
-// async function loadMore(event) {
-//   pixabayApi.page = event.page
-  
-//   try {
-//     const { data: { hits: photoCards } } = await pixabayApi.getPhotoCards();
-
-//     elements.gallery.innerHTML = renderPhotoCards(photoCards);
-
-//     lightbox.refresh();
-    
-//   } catch(error) {
-//     console.log(error.message);
-//   }
+// function onSelect (event) {
+//   orderBy = event.target.textContent 
 // }
+
+async function onSerchCharacters(event) {
+  event.preventDefault();
+
+  elements.tuiPagination.classList.add('is-hidden');
+  elements.gallery.innerHTML = '';
+
+  nameStartsWith = event.target.value;
+  console.log(nameStartsWith);
+
+  try {
+      const {
+        data: {
+          data: { count, offset, total, results },
+        },
+      } = await marvelApi.getCharacters({ nameStartsWith , orderBy});
+
+      totalPages = Math.floor(total / totalItemsPage);
+      console.log(totalPages);
+
+      if (total === 0 || results.length === 0) {
+        pagination.reset(0);
+        return;
+      }
+
+      const charactersImgPage = results.map(
+        ({ id, name, thumbnail: { path, extension } }) => {
+          return {
+            path,
+            extension,
+            name,
+            id,
+          };
+        }
+      );
+
+      const filterImg = charactersImgPage
+        .filter(item => !item.path.endsWith('image_not_available'))
+        .slice(0, totalItemsPage);
+      console.log(filterImg);
+
+      elements.gallery.insertAdjacentHTML(
+        'beforeend',
+        renderGallery(filterImg)
+      );
+      if (totalPages > 1) {
+        elements.tuiPagination.classList.remove('is-hidden');
+
+        pagination.reset(total);
+      }
+
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function loadMore(event) {
+  offset += totalItemsPage;
+  console.log(offset);
+
+  try {
+    const {
+      data: {
+        data: { results },
+      },
+    } = await marvelApi.getCharacters({ nameStartsWith, offset });
+
+    const charactersImgPage = results.map(
+      ({ id, name, thumbnail: { path, extension } }) => {
+        return {
+          path,
+          extension,
+          name,
+          id,
+        };
+      }
+    );
+
+    const filterImgPage = charactersImgPage
+      .filter(item => !item.path.endsWith('image_not_available'))
+      .slice(0, totalItemsPage);
+    elements.gallery.innerHTML = renderGallery(filterImgPage);
+  } catch (error) {
+    console.log(error.message);
+  }
+}
