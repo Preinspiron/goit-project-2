@@ -46,84 +46,20 @@
               <use href="./images/svg/sprite.svg#icon-chevron-down"></use>
             </svg>
           </button>
-          <ul class="characters-options-list title-list">
+          <ul id="order-by" class="characters-options-list title-list">
             <li class="characters-list-item options">Title</li>
             <li class="characters-list-item options">On Sale Date</li>
           </ul>
         </div>
       </div>
-      <label class="filters-select-field"
-        ><span class="filters-input-desc">Start Yeart</span
-        ><select
-          id="start-year"
-          name="start-year"
-          class="filters-select last-filter"
-        >
-          <option value="" class="options">01/05/2018</option>
-          <option value="" class="options">12/06/2019</option>
-        </select></label
-      >
+      <div class="filters-select-field">
+        <span class="filters-input-desc">Start Year</span>
+        <div class="pseudoselect-year filters-select last-filter">
+          Select year
+        </div>
+        <ul id="years-id" class="characters-options-list year-list"></ul>
+      </div>
     </form>
   </div>
+  <script type="module" src="./js/years_comics.js"></script>
 </section>
-
-<script>
-  const selectEl = document.querySelector('.pseudoselect');
-  const listItemsEl = document.querySelector('.characters-options-list');
-  const btnFormatEl = document.querySelector('.js-click-format');
-  let opened = false;
-  // =====================================
-  btnFormatEl.addEventListener('click', e => {
-    e.preventDefault();
-    onBtnFormatElClick();
-  });
-  selectEl.addEventListener('click', onBtnFormatElClick);
-  // ======================================
-  function onBtnFormatElClick(e) {
-    if (opened === false) {
-      selectEl.style.backgroundColor = '#34387F';
-      listItemsEl.style.visibility = 'visible';
-      listItemsEl.addEventListener('click', e => {
-        selectEl.innerHTML = `${e.target.textContent}`;
-        listItemsEl.style.visibility = '';
-        selectEl.style.backgroundColor = '#171717';
-        opened = !opened;
-      });
-    } else {
-      selectEl.style.backgroundColor = '#171717';
-      listItemsEl.style.visibility = '';
-    }
-    opened = !opened;
-  }
-</script>
-
-<!-- Для фільтра по title -->
-<script>
-  const selectTitleEl = document.querySelector('.pseudoselect-title');
-  const listItemsElem = document.querySelector('.title-list');
-  const btnOrderByEl = document.querySelector('.js-click-order-by');
-  let open = false;
-  // ==========================================
-  btnOrderByEl.addEventListener('click', e => {
-    e.preventDefault();
-    onBtnOrderByElClick();
-  });
-  selectTitleEl.addEventListener('click', onBtnOrderByElClick);
-  // =========================================
-  function onBtnOrderByElClick() {
-    if (open === false) {
-      selectTitleEl.style.backgroundColor = '#34387F';
-      listItemsElem.style.visibility = 'visible';
-      listItemsElem.addEventListener('click', e => {
-        selectTitleEl.innerHTML = `${e.target.textContent}`;
-        listItemsElem.style.visibility = '';
-        selectTitleEl.style.backgroundColor = '#171717';
-        open = !open;
-      });
-    } else {
-      selectTitleEl.style.backgroundColor = '#171717';
-      listItemsElem.style.visibility = '';
-    }
-    open = !open;
-  }
-</script>

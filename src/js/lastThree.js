@@ -17,11 +17,7 @@ Marvel.getLastThreeComics('/comics', {
     const hbsObjRandom = respJSONed.map(element => ({
       title: element.title,
       id: element.id,
-      urlImg:
-        element.images[0].path +
-        '/portrait_incredible' +
-        '.' +
-        element.images[0].extension,
+      urlImg: element.images[0].path + '.' + element.images[0].extension,
       creators: element.creators.items[0].name,
     }));
     refs.IndexLastThreeComics.innerHTML = Handlebars(hbsObjRandom);
@@ -120,5 +116,5 @@ async function innerModalLinkToCharacter({ digitalId }) {
   );
   console.log(refs['.modal-comics-characters .items']);
 
-  console.log(pullCharactersById);
+  // console.log(pullCharactersById);
 }

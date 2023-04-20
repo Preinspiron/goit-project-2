@@ -96,43 +96,23 @@
           </ul>
         </div>
         <div class="filters-select-field">
-          <span class="filters-input-desc">Date</span
-          ><select id="date" name="date" class="filters-select">
-            <option value="" class="options">10/03/23</option>
-            <option value="" class="options">12/06/22</option>
-          </select>
+          <span class="filters-input-desc">Date</span>
+          <input
+            type="date"
+            id="calendar"
+            name="search-date"
+            class="filters-select last-filter"
+            placeholder="Select date"
+          />
         </div>
       </div>
     </form>
   </div>
 </section>
 
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>
-  const selectEl = document.querySelector('.pseudoselect');
-  const listItemsEl = document.querySelector('.characters-options-list');
-  const btnOrderEl = document.querySelector('.js-click-order');
-  let opened = false;
-  // ===============================
-  btnOrderEl.addEventListener('click', e => {
-    e.preventDefault();
-    onBtnOrderElClick();
-  });
-  selectEl.addEventListener('click', onBtnOrderElClick);
-  // ==============================
-  function onBtnOrderElClick(e) {
-    if (opened === false) {
-      selectEl.style.backgroundColor = '#34387F';
-      listItemsEl.style.visibility = 'visible';
-      listItemsEl.addEventListener('click', e => {
-        selectEl.innerHTML = `${e.target.textContent}`;
-        listItemsEl.style.visibility = '';
-        selectEl.style.backgroundColor = '#171717';
-        opened = !opened;
-      });
-    } else {
-      selectEl.style.backgroundColor = '#171717';
-      listItemsEl.style.visibility = '';
-    }
-    opened = !opened;
-  }
+  const fp = flatpickr('#calendar', { dateFormat: 'd/m/Y' });
+  fp.calendarContainer.style.backgroundColor = '#171717';
 </script>
+<script type="module" src="./js/filter-characters.js"></script>
