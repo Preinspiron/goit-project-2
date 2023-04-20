@@ -1,11 +1,11 @@
 export default {
   IndexLastThreeComics: document.querySelector('.lastComics-list'),
   IndexRandomCharacter: document.querySelector('.characters-image'),
-  indexSearch: document.querySelector('.header__input '),
+  indexSearch: document.querySelector('.header__input'),
   indexSearchResult: document.querySelector('.characters-page-list'),
   indexLastComics: document.querySelector('#slides-container'),
   //!<=== Modal
-  indexComicsModal: document.querySelector('[data-comics-modal]'),
+  '[data-comics-modal]': null,
   '#modalCloseBtn': null,
   '.modal-comics-characters .items': null,
 
@@ -19,9 +19,10 @@ export default {
   indexComicsModalOpenRenderHbs: document.querySelector('.modal-comics'),
   indexRandomUlRef: document.querySelector('#characters-list-index-renndom'),
   refresh() {
-    const refreshed = Object.entries(this).forEach((key, value) => {
-      return (this[key[0]] = key[1] ?? document.querySelector(key[0]));
+    const refreshed = Object.keys(this);
+    refreshed.forEach(key => {
+      this[key] = this[key] ?? document.querySelector(`${key}`);
     });
-    return console.warn('Refs was Refreshed!');
+    return console.warn('Refs was Refreshed!:', this);
   },
 };
