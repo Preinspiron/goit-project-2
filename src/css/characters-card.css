@@ -71,10 +71,11 @@
 .characters-page-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 64px 16px;
+  gap:  32px;
   margin-left: auto;
   margin-right: auto;
   justify-content: center;
+  /* padding-bottom: 16.667vw; */
 
 }
 
@@ -85,8 +86,8 @@
   align-items: center;
   justify-content: center;
   gap: 40px;
-  padding-top: 40px;
-  padding-bottom: 40px;
+  /* padding-top: 40px;
+  padding-bottom: 40px; */
 }
 
 @media screen and (min-width: 768px) {
@@ -95,8 +96,8 @@
     flex-direction: row;
     flex-wrap: wrap;
     gap: 32px;
-    padding-top: 64px;
-    padding-bottom: 64px
+    /* padding-top: 64px; */
+    /* padding-bottom: 64px */
   }
 }
 
@@ -116,15 +117,17 @@
 
 @media screen and (min-width: 768px) {
   .characters-page-div {
-    width: 336px;
+    width: 704px;
+    padding-bottom: 224px;
   }
 }
 
 @media screen and (min-width: 1440px) {
   .characters-page-div {
-    width: 332px;
+    width: 1440px;
     display: inline-block;
     overflow: hidden;
+    padding-bottom:0;
   }
 }
 
