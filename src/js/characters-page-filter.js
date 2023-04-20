@@ -76,16 +76,6 @@ elements.inputNameStart.addEventListener(
   debounce(onSerchCharacters, 2000)
 );
 
-// elements.filtersSelect.addEventListener('click', onListenerSelect);
-
-// function onListenerSelect () {
-//   elements.optionsList.addEventListener('click', onSelect);
-// }
-
-// function onSelect (event) {
-//   orderBy = event.target.textContent 
-// }
-
 async function onSerchCharacters(event) {
   event.preventDefault();
 
