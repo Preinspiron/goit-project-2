@@ -2,29 +2,31 @@ import HBS from '../hbs/years_select.hbs';
 const selectEl = document.querySelector('.pseudoselect');
 const listItemsEl = document.querySelector('.characters-options-list');
 const btnFormatEl = document.querySelector('.js-click-format');
+
 const selectTitleEl = document.querySelector('.pseudoselect-title');
 const listItemsElem = document.querySelector('.title-list');
 const btnOrderByEl = document.querySelector('.js-click-order-by');
+
 const selectYearEl = document.querySelector('.pseudoselect-year');
 const listItemsElement = document.querySelector('#years-id');
-console.log(listItemsElement);
-console.log('hello');
+
+let opened = false;
+let open = false;
+let openYear = false;
 
 const yearsObj = [];
 for (let i = 0; i < 100; i++) yearsObj.push({ years: 2023 - i });
 listItemsElement.insertAdjacentHTML('afterbegin', HBS(yearsObj));
 
-let opened = false;
-// console.log('years comics');
 // =====================================
 btnFormatEl.addEventListener('click', e => {
   e.preventDefault();
   onBtnFormatElClick();
 });
 selectEl.addEventListener('click', onBtnFormatElClick);
-// ======================================
-function onBtnFormatElClick(e) {
-  e.preventDefault();
+
+function onBtnFormatElClick() {
+  // e.preventDefault();
 
   if (opened === false) {
     selectEl.style.backgroundColor = '#34387F';
@@ -43,18 +45,15 @@ function onBtnFormatElClick(e) {
   opened = !opened;
 }
 
-// Order by
-
-let open = false;
 // ==========================================
 btnOrderByEl.addEventListener('click', e => {
   e.preventDefault();
   onBtnOrderByElClick();
 });
 selectTitleEl.addEventListener('click', onBtnOrderByElClick);
-// =========================================
+
 function onBtnOrderByElClick() {
-  e.preventDefault();
+  // e.preventDefault();
   if (open === false) {
     selectTitleEl.style.backgroundColor = '#34387F';
     listItemsElem.style.visibility = 'visible';
@@ -72,17 +71,12 @@ function onBtnOrderByElClick() {
   open = !open;
 }
 
-// Year
-let openYear = false;
 // ==========================================
-btnOrderByEl.addEventListener('click', e => {
-  e.preventDefault();
-  onBtnOrderByElClick();
-});
-selectYearEl.addEventListener('click', onBtnOrderByElClick);
-// =========================================
-function onBtnOrderByElClick(e) {
-  e.preventDefault();
+
+selectYearEl.addEventListener('click', onSelectYearClick);
+
+function onSelectYearClick() {
+  // e.preventDefault();
   if (openYear === false) {
     selectYearEl.style.backgroundColor = '#34387F';
     listItemsElement.style.visibility = 'visible';
