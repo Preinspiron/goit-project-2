@@ -116,5 +116,5 @@ async function innerModalLinkToCharacter({ digitalId }) {
   );
   console.log(refs['.modal-comics-characters .items']);
 
-  console.log(pullCharactersById);
+  // console.log(pullCharactersById);
 }
