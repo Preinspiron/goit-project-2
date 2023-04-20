@@ -3,8 +3,8 @@ import axios from 'axios';
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
 import '../css/notiflix-3.2.6.min.css';
 let flag = true;
-const PUBLICK = 'f31807a60270db8c1d9152910dc43c3a';
-const PRIVAT = 'e096f5c83a35e96c2f1b391e0633321a9c1b55af';
+const PUBLICK = '7d9ed9bfb71cc9447a4fb89b3662f78c';
+const PRIVAT = 'c8d62222945a3adbe843242478edb88acf6d4666';
 const TS = 1;
 const MD5 = md5(TS + PRIVAT + PUBLICK);
 let MARVEL_KEYS = {
