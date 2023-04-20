@@ -2,9 +2,14 @@ import HBS from '../hbs/years_select.hbs';
 const selectEl = document.querySelector('.pseudoselect');
 const listItemsEl = document.querySelector('.characters-options-list');
 const btnFormatEl = document.querySelector('.js-click-format');
+const selectTitleEl = document.querySelector('.pseudoselect-title');
+const listItemsElem = document.querySelector('.title-list');
+const btnOrderByEl = document.querySelector('.js-click-order-by');
 const selectYearEl = document.querySelector('.pseudoselect-year');
 const listItemsElement = document.querySelector('#years-id');
 console.log(listItemsElement);
+console.log('hello');
+
 const yearsObj = [];
 for (let i = 0; i < 100; i++) yearsObj.push({ years: 2023 - i });
 listItemsElement.insertAdjacentHTML('afterbegin', HBS(yearsObj));
@@ -19,7 +24,7 @@ btnFormatEl.addEventListener('click', e => {
 selectEl.addEventListener('click', onBtnFormatElClick);
 // ======================================
 function onBtnFormatElClick(e) {
-  // e.preventDefault();
+  e.preventDefault();
 
   if (opened === false) {
     selectEl.style.backgroundColor = '#34387F';
@@ -38,9 +43,8 @@ function onBtnFormatElClick(e) {
   opened = !opened;
 }
 
-const selectTitleEl = document.querySelector('.pseudoselect-title');
-const listItemsElem = document.querySelector('.title-list');
-const btnOrderByEl = document.querySelector('.js-click-order-by');
+// Order by
+
 let open = false;
 // ==========================================
 btnOrderByEl.addEventListener('click', e => {
@@ -68,6 +72,7 @@ function onBtnOrderByElClick() {
   open = !open;
 }
 
+// Year
 let openYear = false;
 // ==========================================
 btnOrderByEl.addEventListener('click', e => {
