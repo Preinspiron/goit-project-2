@@ -7,6 +7,10 @@ refs.indexSearch.addEventListener('input', debounce(onSearchInput, 1000));
 
 function onSearchInput(e) {
   e.preventDefault();
+  if (e.target.value === '') {
+    refs.indexSearchResult.innerHTML = '';
+    return;
+  }
   let input = e.target.value;
   console.log(input);
   input &&
@@ -17,11 +21,14 @@ function onSearchInput(e) {
           ({ thumbnail: { path } }) => !path.includes('image_not_available')
         );
         preRender.length = 16;
-        return preRender.map(({ name, thumbnail: { path, extension } }) => ({
-          name: name.split('(')[0],
-          path,
-          extension,
-        }));
+        return preRender.map(
+          ({ id, name, thumbnail: { path, extension } }) => ({
+            name: name.split('(')[0],
+            path,
+            extension,
+            id,
+          })
+        );
       })
       .then(res => {
         console.log(res);

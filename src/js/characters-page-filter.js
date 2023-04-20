@@ -1,22 +1,19 @@
-import refs from '.refs';
-import HBS from '../hbs/yers.hbs';
-import Marvel from '../js/fetchMarvel';
-
-// import flatpickr from "flatpickr";
+import flatpickr from "flatpickr";
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import { MarvelApi } from './marvel-api';
+import Notiflix from 'notiflix';
+import { MarvelApi } from "./marvel-api";
+import '../hbs/_renderStartCharactersPage.hbs';
+
 
 const elements = {
   form: document.querySelector('.js-serch-form'),
+
   gallery: document.querySelector('.js-gallery'),
   tuiPagination: document.querySelector('.js-tui-pagination'),
-};
+}
 
-// let totalPages = null;
-
-// const optionsPagination = {
+// const optionsPagination = { 
 //   totalItems: 0,
 //   itemsPerPage: 20,
 //   visiblePages: 10,
@@ -30,9 +27,10 @@ const marvelApi = new MarvelApi();
 renderStartPage();
 
 async function renderStartPage() {
-  const data = await marvelApi.getCharacters((limit = 20));
-  console.log(data);
+  const {data: {data: {results}}} = await marvelApi.getCharactersLoadPage();
+  
 }
+
 
 // elements.form.addEventListener('submit', onSerchImages);
 
@@ -41,6 +39,7 @@ async function renderStartPage() {
 
 //   elements.tuiPagination.classList.add('is-hidden');
 //   elements.gallery.innerHTML = '';
+  
 
 //   const { elements: { searchQuery } } = event.currentTarget;
 //   pixabayApi.searchQuery = searchQuery.value;
@@ -63,11 +62,11 @@ async function renderStartPage() {
 
 //     if (totalPages > 1) {
 //       elements.tuiPagination.classList.remove('is-hidden');
-
+      
 //       pagination.reset(totalHits);
-
+      
 //     }
-
+  
 //   } catch (error) {
 //     console.log(error);
 //   }
@@ -76,14 +75,14 @@ async function renderStartPage() {
 
 // async function loadMore(event) {
 //   pixabayApi.page = event.page
-
+  
 //   try {
 //     const { data: { hits: photoCards } } = await pixabayApi.getPhotoCards();
 
 //     elements.gallery.innerHTML = renderPhotoCards(photoCards);
 
 //     lightbox.refresh();
-
+    
 //   } catch(error) {
 //     console.log(error.message);
 //   }

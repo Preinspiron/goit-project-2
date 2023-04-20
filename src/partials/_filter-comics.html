@@ -46,7 +46,7 @@
               <use href="./images/svg/sprite.svg#icon-chevron-down"></use>
             </svg>
           </button>
-          <ul class="characters-options-list title-list">
+          <ul id="order-by" class="characters-options-list title-list">
             <li class="characters-list-item options">Title</li>
             <li class="characters-list-item options">On Sale Date</li>
           </ul>
@@ -54,25 +54,12 @@
       </div>
       <div class="filters-select-field">
         <span class="filters-input-desc">Start Year</span>
-        <!-- <input
-            type="number"
-            id="start-year"
-            min="1900"
-            max="2023"
-            name="start-year"
-            class="filters-select last-filter"
-            placeholder="Enter year"
-          /> -->
         <div class="pseudoselect-year filters-select last-filter">
           Select year
         </div>
-        <!-- <button type="submit" class="search-format-btn js-click-format">
-            <svg class="icon icon-search" width="18" height="18">
-              <use href="./images/svg/sprite.svg#icon-chevron-down"></use>
-            </svg>
-          </button> -->
-        <ul class="characters-options-list year-list"></ul>
+        <ul id="years-id" class="characters-options-list year-list"></ul>
       </div>
     </form>
   </div>
+  <script type="module" src="./js/years_comics.js"></script>
 </section>

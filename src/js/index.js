@@ -3,3 +3,4 @@ import Fetch from './fetchMarvel';
 // import './last-comics';
 import './lastThree';
 import './indexRandom';
+import './modal-characters';
