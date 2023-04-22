@@ -6,8 +6,8 @@ let flag = true;
 
 export class MarvelApi {
   //  static HASH_KEY = '752374e9c2edb150871c0c2b35839a8b';
-  static PUBLIC_KEY = '7d9ed9bfb71cc9447a4fb89b3662f78c';
-  static PRIVATE_KEY = 'c8d62222945a3adbe843242478edb88acf6d4666';
+  static PUBLIC_KEY = '362c5982a1bb7f937dd44f95ce965f3b';
+  static PRIVATE_KEY = '6029b0905eedb0e67e35a1cbd973b27ffa2f6416';
   static URL_BASIS = 'https://gateway.marvel.com/v1/public';
   static TS = 1;
   static URL_CHARACTERS = '/characters';
